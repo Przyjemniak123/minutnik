@@ -2,8 +2,152 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d"
+        d:DesignWidth="760"
+        d:DesignHeight="600"
         x:Class="minutnik.MainWindow"
-        Title="minutnik">
-    Welcome to Avalonia!
+        Title="Minutnik Pomodoro"
+        Width="760"
+        Height="600"
+        MinWidth="560"
+        MinHeight="520"
+        Background="#F3F6FB">
+    <Grid Margin="32" RowDefinitions="Auto,*">
+        <StackPanel Spacing="8" HorizontalAlignment="Center">
+            <TextBlock Text="MINUTNIK POMODORO"
+                       FontSize="13"
+                       FontWeight="SemiBold"
+                       Foreground="#55708F"
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="Skup się na tym, co ważne"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Foreground="#172B4D"
+                       HorizontalAlignment="Center" />
+        </StackPanel>
+
+        <Border Grid.Row="1"
+                MaxWidth="620"
+                Padding="28"
+                CornerRadius="24"
+                Background="White"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <StackPanel Spacing="28">
+                <StackPanel Spacing="8" HorizontalAlignment="Center">
+                    <TextBlock x:Name="PhaseText"
+                               Text="PRACA"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Foreground="#3267D5"
+                               HorizontalAlignment="Center" />
+                    <TextBlock x:Name="StatusText"
+                               Text="Gotowy do pracy"
+                               FontSize="14"
+                               Foreground="#718096"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+
+                <Grid ColumnDefinitions="*,Auto,*" MinWidth="430">
+                    <TextBlock x:Name="TimerText"
+                               Grid.Column="0"
+                               Text="25:00"
+                               FontSize="76"
+                               FontWeight="Bold"
+                               FontFamily="Consolas"
+                               Foreground="#172B4D"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                    <Border Grid.Column="1"
+                            Width="1"
+                            Height="72"
+                            Margin="20,0"
+                            Background="#E2E8F0"
+                            VerticalAlignment="Center" />
+                    <StackPanel Grid.Column="2"
+                                Spacing="4"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <TextBlock Text="CYKLE"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="#718096"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock x:Name="CycleCountText"
+                                   Text="0"
+                                   FontSize="42"
+                                   FontWeight="Bold"
+                                   Foreground="#172B4D"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock Text="ukończone"
+                                   FontSize="12"
+                                   Foreground="#718096"
+                                   HorizontalAlignment="Center" />
+                        <ListBox Name="HistoryList" MinHeight="60" />
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Orientation="Horizontal"
+                            Spacing="16"
+                            HorizontalAlignment="Center">
+                    <Button x:Name="StartPauseButton"
+                            Content="Start"
+                            Click="OnStartPauseClick"
+                            Width="160"
+                            Height="48"
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Background="#3267D5"
+                            Foreground="White" />
+                    <Button Content="Reset"
+                            Click="OnResetClick"
+                            Width="120"
+                            Height="48"
+                            FontSize="16" />
+                </StackPanel>
+
+                <Border Height="1" Background="#E2E8F0" />
+
+                <StackPanel Spacing="12">
+                    <TextBlock Text="DŁUGOŚĆ FAZ"
+                               FontSize="12"
+                               FontWeight="Bold"
+                               Foreground="#55708F"
+                               HorizontalAlignment="Center" />
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="24"
+                                HorizontalAlignment="Center">
+                        <StackPanel Spacing="6">
+                            <TextBlock Text="Praca (min)"
+                                       FontSize="13"
+                                       Foreground="#52637A" />
+                            <NumericUpDown x:Name="WorkDurationInput"
+                                           Minimum="1"
+                                           Maximum="180"
+                                           Increment="1"
+                                           FormatString="0"
+                                           Value="25"
+                                           Width="120" />
+                        </StackPanel>
+                        <StackPanel Spacing="6">
+                            <TextBlock Text="Przerwa (min)"
+                                       FontSize="13"
+                                       Foreground="#52637A" />
+                            <NumericUpDown x:Name="BreakDurationInput"
+                                           Minimum="1"
+                                           Maximum="180"
+                                           Increment="1"
+                                           FormatString="0"
+                                           Value="5"
+                                           Width="120" />
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock Text="Zmiany długości obowiązują od następnej fazy."
+                               FontSize="12"
+                               Foreground="#8795A8"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
 </Window>
